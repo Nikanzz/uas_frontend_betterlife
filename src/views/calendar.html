@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="calendarApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar Events</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Menyertakan AngularJS dari CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <!-- Menyambungkan file app.js yang terpisah -->
+    <script src="calendar.js"></script>
+</head>
+
+<body>
+
+    <div ng-controller="calendarController">
+        <div class="calendar-container">
+            <h2>Calendar Events</h2>
+
+            <!-- Menampilkan event dari MongoDB -->
+            <ul class="event-list">
+                <li ng-repeat="event in events" class="event-item">
+                    <strong>{{ event.eventName }}</strong> - {{ event.date | date:'mediumDate' }}
+                    <p>{{ event.description }}</p>
+                </li>
+            </ul>
+
+            <h3>Add New Event</h3>
+            <form ng-submit="addEvent()" class="event-form">
+                <div class="form-group">
+                    <label for="eventName">Event Name</label>
+                    <input type="text" id="eventName" ng-model="newEvent.eventName" placeholder="Event Name" required />
+                </div>
+                <div class="form-group">
+                    <label for="eventDate">Date</label>
+                    <input type="date" id="eventDate" ng-model="newEvent.date" placeholder="Date" required />
+                </div>
+                <div class="form-group">
+                    <label for="eventDescription">Description</label>
+                    <textarea id="eventDescription" ng-model="newEvent.description"
+                        placeholder="Description"></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Add Event</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>
