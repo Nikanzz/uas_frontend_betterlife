@@ -1,0 +1,21 @@
+<!-- views/diary.html -->
+<div ng-controller="diaryController">
+    <link rel="stylesheet" href="../styles/diary.css">
+    <div class="diary-container">
+    <h1>Diary</h1>
+    <ul>
+        <li ng-repeat="diary in diaries">
+            <h3>{{ diary.title }}</h3>
+            <p>{{ diary.content }}</p>
+            <small>{{ diary.date | date:'medium' }}</small>
+        </li>
+    </ul>
+
+    <h2>Add New Entry</h2>
+    <form ng-submit="addDiary()">
+        <input type="text" ng-model="newDiary.title" placeholder="Title" required />
+        <textarea ng-model="newDiary.content" placeholder="Content" required></textarea>
+        <button type="submit">Add Entry</button>
+    </form>
+</div>
+</div>
